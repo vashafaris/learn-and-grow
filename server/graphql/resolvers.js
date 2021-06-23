@@ -45,5 +45,14 @@ module.exports = {
     return { ...createdTopic._doc, _id: createdTopic._id.toString() };
   },
   updateTopic: async function () {},
-  deleteTopic: async function () {},
+  deleteTopic: async function ({ id }, req) {
+    const topic = await Topic.findById(id);
+    if (!topic) {
+      const error = new Error('Topic is not found');
+      error.code = 404;
+      throw error;
+    }
+    await Topic.findByIdAndRemove(id);
+    return true;
+  },
 };

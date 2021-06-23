@@ -28,6 +28,7 @@ module.exports = buildSchema(`
 
   type RootMutation {
     createTopic(topicInput: TopicInput): Topic!
+    deleteTopic(id: ID): Boolean
   }
 
   schema {
