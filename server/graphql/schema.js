@@ -10,9 +10,9 @@ module.exports = buildSchema(`
   }
 
   type TopicData {
-      topics: [Topic!]!
-      totalTopics: Int!
-  }
+    data: [Topic!]!
+    totalTopics: Int!
+}
 
   input TopicInput {
     title: String!

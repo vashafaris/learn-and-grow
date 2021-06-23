@@ -4,18 +4,15 @@ const Topic = require('../models/Topic');
 
 module.exports = {
   topics: async function () {
+    const data = await Topic.find();
     const totalTopics = await Topic.find().countDocuments();
-    const topics = await Topic.find();
-    console.log(topics, totalTopics);
 
     return {
-      topics,
+      data,
       totalTopics,
     };
   },
   createTopic: async function ({ topicInput }, req) {
-    console.log(topicInput);
-    //   const email = args.topicInput.email;
     const errors = [];
 
     if (validator.isEmpty(topicInput.title)) {
@@ -31,7 +28,7 @@ module.exports = {
 
     const isTopicExist = await Topic.findOne({ title: topicInput.title });
     if (isTopicExist) {
-      const error = new Error('User exists already!');
+      const error = new Error('Topic is already exist!');
       throw error;
     }
 
