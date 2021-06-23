@@ -13,6 +13,18 @@ module.exports = {
       totalTopics,
     };
   },
+  topic: async function ({ id }, req) {
+    const topic = await Topic.findById(id);
+
+    if (!topic) {
+      const error = new Error('No topic found!');
+      error.code = 404;
+      throw error;
+    }
+    return {
+      ...topic._doc,
+    };
+  },
   createTopic: async function ({ topicInput }, req) {
     const errors = [];
 
@@ -38,13 +50,24 @@ module.exports = {
       description: topicInput.description,
       frontSide: topicInput.frontSide,
       backSide: topicInput.backSide,
+      difficulty: topicInput.difficulty,
       createdAt: moment().format('DD MMMM YYYY'),
     });
     const createdTopic = await topic.save();
 
     return { ...createdTopic._doc, _id: createdTopic._id.toString() };
   },
-  updateTopic: async function () {},
+  updateTopic: async function ({ id, difficulty }, req) {
+    const topic = await Topic.findById(id);
+    if (!topic) {
+      const error = new Error('Topic is not found');
+      error.code = 404;
+      throw error;
+    }
+    topic.difficulty = difficulty;
+    await topic.save();
+    return true;
+  },
   deleteTopic: async function ({ id }, req) {
     const topic = await Topic.findById(id);
     if (!topic) {

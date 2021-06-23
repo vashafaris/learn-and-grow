@@ -7,6 +7,7 @@ module.exports = buildSchema(`
     description: String!
     frontSide: String!
     backSide: String!
+    difficulty: String!
     createdAt: String!
   }
 
@@ -20,14 +21,17 @@ module.exports = buildSchema(`
     description: String!
     frontSide: String!
     backSide: String!
+    difficulty: String!
   }
 
   type RootQuery {
     topics: TopicData!
+    topic(id: ID!): Topic!
   }
 
   type RootMutation {
     createTopic(topicInput: TopicInput): Topic!
+    updateTopic(id: ID, difficulty: String): Boolean
     deleteTopic(id: ID): Boolean
   }
 

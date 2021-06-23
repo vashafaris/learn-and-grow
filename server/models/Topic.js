@@ -18,6 +18,10 @@ const TopicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  difficulty: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: String,
     required: true,
