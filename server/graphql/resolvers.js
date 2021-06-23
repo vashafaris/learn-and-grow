@@ -1,4 +1,5 @@
 const validator = require('validator');
+const moment = require('moment');
 
 const Topic = require('../models/Topic');
 
@@ -35,9 +36,14 @@ module.exports = {
     const topic = new Topic({
       title: topicInput.title,
       description: topicInput.description,
+      frontSide: topicInput.frontSide,
+      backSide: topicInput.backSide,
+      createdAt: moment().format('DD MMMM YYYY'),
     });
     const createdTopic = await topic.save();
 
     return { ...createdTopic._doc, _id: createdTopic._id.toString() };
   },
+  updateTopic: async function () {},
+  deleteTopic: async function () {},
 };

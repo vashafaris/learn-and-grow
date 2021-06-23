@@ -5,8 +5,9 @@ module.exports = buildSchema(`
     _id: ID!
     title: String!
     description: String!
+    frontSide: String!
+    backSide: String!
     createdAt: String!
-    updatedAt: String!
   }
 
   type TopicData {
@@ -17,6 +18,8 @@ module.exports = buildSchema(`
   input TopicInput {
     title: String!
     description: String!
+    frontSide: String!
+    backSide: String!
   }
 
   type RootQuery {

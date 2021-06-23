@@ -10,6 +10,18 @@ const TopicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  frontSide: {
+    type: String,
+    required: true,
+  },
+  backSide: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Topic', TopicSchema);
