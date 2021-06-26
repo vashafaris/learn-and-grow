@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 const useFlipCard = (selectedTopic) => {
   const { updateTopic } = useTopicService();
   const [difficulty, setDifficulty] = useState(null);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleButtonClick = (val) => {
     setDifficulty(val);
@@ -12,7 +13,9 @@ const useFlipCard = (selectedTopic) => {
 
   return {
     difficulty,
+    isFlipped,
     setDifficulty,
+    setIsFlipped,
     handleButtonClick,
   };
 };

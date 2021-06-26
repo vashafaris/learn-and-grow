@@ -27,6 +27,7 @@ const Styled = styled.div`
   }
 
   .flip-card {
+    cursor: pointer;
     background-color: transparent;
     width: 30rem;
     height: 45rem;
@@ -43,7 +44,14 @@ const Styled = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
 
-  .flip-card:hover .flip-card-inner {
+  .flip-card .flip-card-inner {
+    /* transform: rotateY(180deg); */
+    &.flipped {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.flipped {
     transform: rotateY(180deg);
   }
 
@@ -66,7 +74,7 @@ const Styled = styled.div`
   }
 
   .flip-card-back {
-    background-color: #2980b9;
+    background-color: black;
     color: white;
     transform: rotateY(180deg);
   }
@@ -102,14 +110,14 @@ const Styled = styled.div`
 `;
 
 const FlipCard = ({ selectedTopic, setSelectedTopic }) => {
-  const { difficulty, setDifficulty, handleButtonClick } =
+  const { isFlipped, setIsFlipped, handleButtonClick } =
     useFlipCard(selectedTopic);
 
   return (
     <Styled>
       <div className={cn('modal', { open: !!selectedTopic })}>
-        <div className='flip-card'>
-          <div className='flip-card-inner'>
+        <div onClick={() => setIsFlipped(!isFlipped)} className='flip-card'>
+          <div className={cn('flip-card-inner', { flipped: isFlipped })}>
             <div className='flip-card-front'>
               <h1>{selectedTopic?.frontSide}</h1>
             </div>
