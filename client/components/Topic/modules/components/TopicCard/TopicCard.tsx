@@ -1,7 +1,8 @@
-import { COLOR } from '@constants/color.constant';
 import styled from 'styled-components';
-import { TopicCardProps } from './modules/model/topic-card.model';
+
 import useTopicCard from './modules/services/topic-card.hook';
+
+import { COLOR } from '@constants/color.constant';
 
 const Styled = styled.div`
   padding: 1.2rem 3.6rem;
@@ -68,15 +69,7 @@ const Styled = styled.div`
   }
 `;
 
-const TopicCard = ({
-  id,
-  title,
-  description,
-  difficulty,
-  createdAt,
-  setSelectedTopic,
-  topic,
-}) => {
+const TopicCard = ({ id, setSelectedTopic, topic }) => {
   const { deleteTopic } = useTopicCard();
 
   return (

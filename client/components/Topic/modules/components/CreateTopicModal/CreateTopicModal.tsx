@@ -116,7 +116,7 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
     setBackSide,
     setDifficulty,
     createTopic,
-  } = useCreateTopicModal(setIsModalOpen);
+  } = useCreateTopicModal();
 
   return (
     <Styled>

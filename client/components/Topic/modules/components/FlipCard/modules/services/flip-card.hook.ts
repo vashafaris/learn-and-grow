@@ -1,5 +1,6 @@
-import { useTopicService } from '@hooks/useTopicService';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import { useTopicService } from '@services/useTopicService.service';
 
 const useFlipCard = (selectedTopic) => {
   const { updateTopic } = useTopicService();

@@ -1,7 +1,8 @@
-import { useTopicService } from '@hooks/useTopicService';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const useCreateTopicModal = (setIsModalOpen) => {
+import { useTopicService } from '@services/useTopicService.service';
+
+const useCreateTopicModal = () => {
   const { createTopic } = useTopicService();
 
   const [title, setTitle] = useState('');

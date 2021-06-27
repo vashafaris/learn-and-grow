@@ -7,7 +7,6 @@ import useTopic from './modules/services/topic.hook';
 import Layout from '@components/common/Layout';
 import Header from '@components/common/Layout/modules/components/Header';
 import CreateTopicModal from '@components/Topic/modules/components/CreateTopicModal';
-
 const Styled = styled.div`
   position: relative;
   display: flex;
@@ -38,10 +37,6 @@ const Topic = () => {
             <TopicCard
               key={topic._id}
               id={topic._id}
-              title={topic.title}
-              description={topic.description}
-              difficulty={topic.difficulty}
-              createdAt={topic.createdAt}
               setSelectedTopic={setSelectedTopic}
               topic={topic}
             />
