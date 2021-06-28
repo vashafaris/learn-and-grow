@@ -1,15 +1,25 @@
 import { useFetch } from '@hooks/useFetch/useFetch.hook';
-import { SET_TOPICS } from './topic.type';
+import { SET_IS_LOADING, SET_TOPICS } from './topic.type';
+
+export const setIsLoading = (isLoading) => (dispatch) => {
+  dispatch({
+    type: SET_IS_LOADING,
+    payload: isLoading,
+  });
+};
 
 export const setTopics = (data) => (dispatch) => {
   dispatch({
     type: SET_TOPICS,
     payload: data,
   });
+  dispatch(setIsLoading(false));
 };
 
 export const getTopics = () => async (dispatch) => {
   const { post } = useFetch();
+
+  dispatch(setIsLoading(true));
 
   const graphqlQuery = {
     query: `query {
@@ -35,6 +45,8 @@ export const getTopics = () => async (dispatch) => {
 
 export const createTopic = (data) => async (dispatch) => {
   const { post } = useFetch();
+
+  dispatch(setIsLoading(true));
 
   const { title, description, frontSide, backSide, difficulty } = data;
 
@@ -62,7 +74,7 @@ export const updateTopic = (data) => async (dispatch) => {
   const { post } = useFetch();
   const { id, difficulty } = data;
 
-  console.log('sdf', id, difficulty);
+  dispatch(setIsLoading(true));
 
   const graphqlQuery = {
     query: `
@@ -82,6 +94,8 @@ export const updateTopic = (data) => async (dispatch) => {
 
 export const deleteTopic = (id: string) => async (dispatch) => {
   const { post } = useFetch();
+
+  dispatch(setIsLoading(true));
 
   const graphqlQuery = {
     query: `

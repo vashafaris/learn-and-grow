@@ -6,7 +6,7 @@ import { getTopics } from 'redux/action/topic/topic.action';
 
 const useTopic = () => {
   const dispatch = useDispatch();
-  const { topics } = useSelector((state: RootState) => state.topic);
+  const { topics, isLoading } = useSelector((state: RootState) => state.topic);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState();
@@ -17,6 +17,7 @@ const useTopic = () => {
 
   return {
     topics,
+    isLoading,
     isModalOpen,
     selectedTopic,
     setIsModalOpen,

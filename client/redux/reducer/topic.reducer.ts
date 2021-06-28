@@ -1,6 +1,7 @@
-import { SET_TOPICS } from 'redux/action/topic/topic.type';
+import { SET_IS_LOADING, SET_TOPICS } from 'redux/action/topic/topic.type';
 
 const initialState = {
+  isLoading: false,
   topics: [],
 };
 
@@ -12,6 +13,11 @@ export const topicReducer = (state = initialState, action) => {
       return {
         ...state,
         topics: payload,
+      };
+    case SET_IS_LOADING:
+      return {
+        ...state,
+        isLoading: payload,
       };
     default:
       return state;
