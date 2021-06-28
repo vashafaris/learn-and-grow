@@ -70,7 +70,7 @@ const Styled = styled.div`
 `;
 
 const TopicCard = ({ id, setSelectedTopic, topic }) => {
-  const { deleteTopic } = useTopicCard();
+  const { handleDeleteTopic } = useTopicCard();
 
   return (
     <Styled>
@@ -82,7 +82,7 @@ const TopicCard = ({ id, setSelectedTopic, topic }) => {
         <button onClick={() => setSelectedTopic(topic)} className='button'>
           Start reviewing
         </button>
-        <button onClick={() => deleteTopic(id)} className='button delete'>
+        <button onClick={() => handleDeleteTopic(id)} className='button delete'>
           Dump Topic
         </button>
       </div>

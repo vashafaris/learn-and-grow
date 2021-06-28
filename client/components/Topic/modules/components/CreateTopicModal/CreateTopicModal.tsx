@@ -115,8 +115,8 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
     setFrontSide,
     setBackSide,
     setDifficulty,
-    createTopic,
-  } = useCreateTopicModal();
+    handleCreateTopic,
+  } = useCreateTopicModal(setIsModalOpen);
 
   return (
     <Styled>
@@ -134,13 +134,13 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
             onChange={(e) => setDescription(e.target.value)}
             type='text'
           />
-          <h4>Front side</h4>
+          <h4>Question</h4>
           <input
             value={frontSide}
             onChange={(e) => setFrontSide(e.target.value)}
             type='text'
           />
-          <h4>Back side</h4>
+          <h4>Answer</h4>
           <input
             value={backSide}
             onChange={(e) => setBackSide(e.target.value)}
@@ -175,13 +175,7 @@ const CreateTopicModal: React.FC<CreateTopicModalProps> = ({
           </div>
           <div className='button-container'>
             <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-            <button
-              onClick={() =>
-                createTopic(title, description, frontSide, backSide, difficulty)
-              }
-            >
-              Create
-            </button>
+            <button onClick={() => handleCreateTopic()}>Create</button>
           </div>
         </div>
       </div>

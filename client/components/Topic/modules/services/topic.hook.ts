@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 
-import { useTopicService } from '@services/useTopicService.service';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux/reducer/root-reducer';
+import { getTopics } from 'redux/action/topic/topic.action';
 
 const useTopic = () => {
-  const { topics, getTopics } = useTopicService();
+  const dispatch = useDispatch();
+  const { topics } = useSelector((state: RootState) => state.topic);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState();
 
   useEffect(() => {
-    getTopics();
+    dispatch(getTopics());
   }, []);
 
   return {

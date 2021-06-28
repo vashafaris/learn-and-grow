@@ -1,10 +1,15 @@
-import { useTopicService } from '@services/useTopicService.service';
+import { useDispatch } from 'react-redux';
+import { deleteTopic } from 'redux/action/topic/topic.action';
 
 const useTopicCard = () => {
-  const { deleteTopic } = useTopicService();
+  const dispatch = useDispatch();
+
+  const handleDeleteTopic = (id) => {
+    dispatch(deleteTopic(id));
+  };
 
   return {
-    deleteTopic,
+    handleDeleteTopic,
   };
 };
 
