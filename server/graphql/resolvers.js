@@ -1,9 +1,23 @@
 const validator = require('validator');
 const moment = require('moment');
+const bcrypt = require('bcrypt');
 
 const Topic = require('../models/Topic');
+const User = require('../models/User');
 
 module.exports = {
+  users: async function () {
+    const users = await User.find();
+    console.log(users);
+    return users;
+  },
+  register: async function ({ userInput }, req) {
+    const user = User();
+    user.username = userInput.username;
+    user.email = userInput.email;
+    user.password = await bcrypt.hash(userInput.password, 12);
+    return user.save();
+  },
   topics: async function () {
     const data = await Topic.find();
     const totalTopics = await Topic.find().countDocuments();
