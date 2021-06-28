@@ -110,8 +110,10 @@ const Styled = styled.div`
 `;
 
 const FlipCard = ({ selectedTopic, setSelectedTopic }) => {
-  const { isFlipped, setIsFlipped, handleButtonClick } =
-    useFlipCard(selectedTopic);
+  const { isFlipped, setIsFlipped, handleButtonClick } = useFlipCard(
+    selectedTopic,
+    setSelectedTopic
+  );
 
   return (
     <Styled>

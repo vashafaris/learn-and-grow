@@ -1,14 +1,23 @@
-import { useTopicService } from '@hooks/useTopicService';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { createTopic } from 'redux/action/topic/topic.action';
 
 const useCreateTopicModal = (setIsModalOpen) => {
-  const { createTopic } = useTopicService();
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [frontSide, setFrontSide] = useState('');
   const [backSide, setBackSide] = useState('');
   const [difficulty, setDifficulty] = useState(null);
+
+  const handleCreateTopic = () => {
+    dispatch(
+      createTopic({ title, description, frontSide, backSide, difficulty })
+    );
+    setIsModalOpen(false);
+  };
 
   return {
     title,
@@ -21,7 +30,7 @@ const useCreateTopicModal = (setIsModalOpen) => {
     setFrontSide,
     setBackSide,
     setDifficulty,
-    createTopic,
+    handleCreateTopic,
   };
 };
 
