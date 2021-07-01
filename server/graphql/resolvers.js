@@ -7,9 +7,7 @@ const User = require('../models/User');
 
 module.exports = {
   users: async function () {
-    const users = await User.find();
-    console.log(users);
-    return users;
+    return await User.find();
   },
   register: async function ({ userInput }, req) {
     const user = User();
@@ -17,6 +15,19 @@ module.exports = {
     user.email = userInput.email;
     user.password = await bcrypt.hash(userInput.password, 12);
     return user.save();
+  },
+  login: async function ({ username, password }, req) {
+    const user = await User.findOne({ username: username });
+    if (!user) {
+      throw new Error('No user found ');
+    }
+
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      throw new Error('Incorrect password ');
+    }
+
+    return 'token';
   },
   topics: async function () {
     const data = await Topic.find();
